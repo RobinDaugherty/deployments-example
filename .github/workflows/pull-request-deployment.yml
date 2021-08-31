@@ -27,7 +27,7 @@ jobs:
       - name: Cancel any other running deployment workflows
         uses: styfle/cancel-workflow-action@0.9.1
         with:
-          workflow_id: ${{ github.workflow }}
+          workflow_id: pull-request-deployment
           access_token: ${{ github.token }}
 
       - name: Create bot access token
@@ -65,7 +65,7 @@ jobs:
       - name: Cancel any running deployment workflow
         uses: styfle/cancel-workflow-action@0.9.1
         with:
-          workflow_id: ${{ github.workflow }}
+          workflow_id: pull-request-deployment
           access_token: ${{ github.token }}
 
       - name: Find existing deployment
