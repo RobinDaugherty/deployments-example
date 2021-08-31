@@ -20,7 +20,7 @@ jobs:
     name: "Create Deployment"
     if: |
       github.event_name == 'pull_request' &&
-      contains(['opened', 'reopened', 'labeled', 'synchronize'], github.event.action) &&
+      contains(fromJson('["opened", "reopened", "labeled", "synchronize"]'), github.event.action) &&
       contains(github.event.pull_request.labels.*.name, 'deploy to test')
     runs-on: ubuntu-latest
     steps:
@@ -57,7 +57,7 @@ jobs:
     if: |
       github.event_name == 'pull_request' &&
       (
-        contains(['closed'], github.event.action) ||
+        github.event.action == 'closed' ||
         ! contains(github.event.pull_request.labels.*.name, 'deploy to test')
       )
     runs-on: ubuntu-latest
